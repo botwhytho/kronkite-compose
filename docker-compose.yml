@@ -1,0 +1,21 @@
+version: "2"
+services:
+  node:
+    image: node:6-alpine
+    volumes:
+      - ./google-trends-microservice:/app
+    expose:
+      - "3000"
+    networks:
+      - back-end
+    entrypoint: /bin/sh -c
+    working_dir: /app
+    command: ["npm install && node index.js"]
+    stdin_open: true
+    tty: true 
+
+networks:
+  front-end:
+    driver: bridge
+  back-end:
+    driver: bridge
