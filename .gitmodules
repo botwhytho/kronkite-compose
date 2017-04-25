@@ -1,0 +1,9 @@
+[submodule "google-trends-microservice"]
+	path = google-trends-microservice
+	url = git@github.com:botwhytho/google-trends-microservice.git
+[submodule "kronkite-server"]
+	path = kronkite-server
+	url = git@github.com:botwhytho/kronkite-server.git
+[submodule "kronkite-v2"]
+	path = kronkite-v2
+	url = git@github.com:botwhytho/kronkite-v2.git
