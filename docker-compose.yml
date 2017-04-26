@@ -13,7 +13,35 @@ services:
     command: ["npm install && node index.js"]
     stdin_open: true
     tty: true 
-
+  sinatra:
+    image: ruby:2.4
+    volumes:
+      - ./kronkite-server:/app
+      - ruby-dependencies:/usr/local/bundle
+    ports:
+      - "8080:80"
+    networks:
+      - front-end
+      - back-end
+    entrypoint: /bin/sh -c
+    working_dir: /app
+    command: ["bundle install && ruby ./server.rb -p 80"]
+    stdin_open: true
+    tty: true
+    env_file: ./.sinatra-env
+  nginx:
+    image: nginx:alpine
+    volumes:
+      - ./kronkite-v2/dist:/usr/share/nginx/html:ro
+    ports:
+      - "8888:80"
+    networks:
+      - front-end
+    stdin_open: true
+    tty: true
+volumes:
+  ruby-dependencies:
+    driver: local
 networks:
   front-end:
     driver: bridge
