@@ -18,8 +18,6 @@ services:
     volumes:
       - ./kronkite-server:/app
       - ruby-dependencies:/usr/local/bundle
-    ports:
-      - "8080:80"
     networks:
       - front-end
       - back-end
